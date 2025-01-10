@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chilav - Smart Expense Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #121212;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin-bottom: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: #77B255;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkle 1.5s infinite;
+        }
+
+        .sparkle-1 {
+            top: 0;
+            right: -30px;
+        }
+
+        .sparkle-2 {
+            bottom: 20%;
+            left: -30px;
+        }
+
+        .heading {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 0.5s 0.2s forwards;
+        }
+
+        .subheading {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 0.5s 0.4s forwards;
+            max-width: 600px;
+        }
+
+        .waitlist-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 0.5s 0.6s forwards;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 2px solid rgba(119, 178, 85, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #77B255;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .submit-btn {
+            background-color: #77B255;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #77B255;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(119, 178, 85, 0.3);
+        }
+
+        .background-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(119, 178, 85, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+            100% { transform: scale(1) rotate(360deg); opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .heading {
+                font-size: 2.5rem;
+            }
+            .subheading {
+                font-size: 1.2rem;
+            }
+            .waitlist-form {
+                flex-direction: column;
+            }
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-gradient"></div>
+        <div class="logo-container">
+            <svg width="240" height="240" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32.7153 19.27C38.6087 16.2385 45.8438 18.5585 48.8754 24.452L53.126 32.7153C56.1575 38.6088 53.8375 45.8439 47.944 48.8754L39.6807 53.126C33.7872 56.1575 26.5521 53.8375 23.5206 47.9441L19.27 39.6807C16.2385 33.7873 18.5585 26.5522 24.4519 23.5206L32.7153 19.27Z" fill="#77B255"/>
+                <path d="M26.4391 25.4553C34.6164 18.0351 47.7599 22.2497 50.0973 33.0416C52.4347 43.8335 42.213 53.1087 31.6983 49.7371C21.1835 46.3654 18.2618 32.8755 26.4391 25.4553Z" fill="#77B255"/>
+                <rect x="29.9678" y="30.156" width="3" height="6" rx="1.5" fill="black"/>
+                <rect x="31" y="33" width="1" height="2" rx="0.5" fill="white"/>
+                <rect x="39.9678" y="30.156" width="3" height="6" rx="1.5" fill="black"/>
+                <rect x="41" y="33" width="1" height="2" rx="0.5" fill="white"/>
+                <path d="M35.9678 39.7857C40.2962 41.6005 42.22 36.156 35.9678 36.156" stroke="black"/>
+                <path d="M32.9678 42.156C32.9678 42.6813 33.0712 43.2014 33.2723 43.6867C33.4733 44.172 33.7679 44.613 34.1393 44.9844C34.5108 45.3559 34.9517 45.6505 35.437 45.8515C35.9223 46.0525 36.4425 46.156 36.9678 46.156C37.4931 46.156 38.0132 46.0525 38.4985 45.8515C38.9838 45.6505 39.4248 45.3559 39.7962 44.9844C40.1676 44.613 40.4623 44.172 40.6633 43.6867C40.8643 43.2014 40.9678 42.6813 40.9678 42.156H39.7415C39.7415 42.5203 39.6698 42.8809 39.5304 43.2175C39.391 43.554 39.1867 43.8598 38.9291 44.1173C38.6715 44.3749 38.3658 44.5792 38.0292 44.7186C37.6927 44.858 37.332 44.9298 36.9678 44.9298C36.6035 44.9298 36.2428 44.858 35.9063 44.7186C35.5698 44.5792 35.264 44.3749 35.0064 44.1173C34.7489 43.8598 34.5446 43.554 34.4052 43.2175C34.2658 42.8809 34.194 42.5203 34.194 42.156H32.9678Z" fill="black"/>
+            </svg>
+            <div class="sparkle sparkle-1"></div>
+            <div class="sparkle sparkle-2"></div>
+        </div>
+        <h1 class="heading">Track Expenses with Joy</h1>
+        <p class="subheading">Your friendly companion for smart expense tracking. Simple, intuitive, and actually fun to use.</p>
+        <form class="waitlist-form">
+            <input type="email" class="email-input" placeholder="Enter your email" required>
+            <button type="submit" class="submit-btn">Join Waitlist</button>
+        </form>
+    </div>
+</body>
+</html>
